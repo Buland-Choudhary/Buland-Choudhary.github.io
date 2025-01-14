@@ -1,18 +1,192 @@
+/* General Styles */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    text-align: center;
+    color: #333;
+    background-color: #f9f9f9;
+    line-height: 3;
 }
+
+/* Navigation */
 header {
-    background-color: #333;
+    position: fixed;
+    top: 0;          /* Position it at the very top of the screen */
+    width: 100%;
+    background: #007acc;
+    z-index: 1000;   /* Ensure the header is above other elements */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+header nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li{
+    
+    background-color: #0075c3;
+    border: #69a2c9 1px solid;
+}
+
+header nav ul li a{
+    display: block; /* Makes the <a> take the full width and height of <li> */
+    padding: 10px 30px;  /* Adds clickable space around the text */
+    color: rgb(243, 243, 243);
+    text-decoration: None;
+}
+
+header nav ul li a:hover {
+    color: white; /* New color on hover (orange) */
+    background-color:  #0066a9; /* Optional: Adds a subtle background highlight */
+}
+/* 
+#snap-container {
+    margin-top: 60px;
+    scroll-snap-type: y mandatory; 
+    overflow-y: scroll; 
+    height: 100vh; 
+}
+
+
+.snap-section {
+    scroll-snap-align: start; 
+    height: 92vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+} */
+
+/* Section Styles */
+section {
+    display: flex;
+    justify-content: center;
+    height: 88vh;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.favorite.styled {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007acc;
     color: white;
-    padding: 1rem;
-}
-main {
-    padding: 2rem;
-}
-a {
-    color: blue;
     text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+}
+
+.favorite.styled:hover {
+    background-color: #005f99;
+} 
+
+
+/* Welcome Section */
+#welcome {
+    background: #4b4b4b;
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+    font-size: 150%;
+}
+
+#welcome .welcome-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-bottom: 7rem;
+}
+
+#welcome button {
+    background: white;
+    color: #007acc;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+/* About Me Section */
+#about-me {
+    padding: 3rem 2rem;
+    background-color: #fafafa; /* Optional: Background color for the section */
+}
+
+.about-me-container {
+    display: flex;
+    align-items: center; /* Vertically align text and image */
+    gap: 40px; /* Add spacing between text and image */
+    max-width: 1200px;
+    max-height: 500px;
+    margin: auto; /* Center the container */
+}
+
+.about-me-text {
+    flex: 1.2; /* Let the text take up available space */
+    color: #333; /* Text color */
+    font-size: 110%; /* Font size */
+}
+
+.about-me-image {
+    flex: 0.8; /* Let the image take up available space */
+    text-align: center; /* Center the image horizontally */
+}
+
+.about-me-image img {
+    max-width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain the aspect ratio */
+    border-radius: 10px; /* Optional: Add rounded corners to the image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
+
+
+#education {
+    padding: 3rem 2rem;
+    background-color: #fff3f3; 
+}
+
+#projects {
+    padding: 3rem 2rem;
+    background-color: #f5fffa; 
+}
+
+.education-container, .projects-container {
+    display: grid;
+    align-items: center; /* Vertically align text and image */
+    font-size: 150%;
+    max-width: 1200px;
+    margin: auto; /* Center the container */
+}
+
+.education-container h4, .projects-container h4 {
+    margin: 0px;
+}
+.projects-container h2 {
+    margin: 0px;
+}
+.projects-container p {
+    margin-top: 0px;
+}
+
+/* Footer */
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
 }

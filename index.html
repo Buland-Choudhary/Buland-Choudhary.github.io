@@ -3,19 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buland Choudhary | Portfolio</title>
+    <meta name="description" content="Buland Choudhary's Portfolio">
+    <title>Buland | Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>Welcome to My Portfolio</h1>
+        <nav>
+            <ul>
+                <li><a href="#welcome">Welcome</a></li>
+                <li><a href="#about-me">About Me</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+        </nav>
     </header>
-    <main>
-        <p>Hello! I am Buland Choudhary, a computer engineering student at UBC. Check out my projects below!</p>
-        <ul>
-            <li><a href="https://github.com/Buland-Choudhary/project1">Project 1</a></li>
-            <li><a href="https://github.com/Buland-Choudhary/project2">Project 2</a></li>
-        </ul>
+
+    <main id="snap-container">  
+        <section class="snap-section" id="welcome">
+            <div class="welcome-container">
+                <h1>Hi, I'm Buland Choudhary</h1>
+                <p>Aspiring Computer Engineer | Passionate about Technology and Innovation</p>
+                <a href="#projects" class="favorite styled">View my projects</a>
+
+            </div>
+        </section>
+    
+        <section class="snap-section" id="about-me">
+            <div class="about-me-container">
+                <div class="about-me-text">
+                    <h2>About Me</h2>
+                    <p>
+                        I’m a highly motivated final-year Computer Engineering student at the University of British Columbia, specializing in Software
+                        Engineering. With a strong foundation in problem-solving and mathematics, I’m eager to leverage my technical skills and creativity in a software engineering role.
+                    </p>
+                </div>
+                <div class="about-me-image">
+                    <img src="profile.jpg" alt="Buland Choudhary's profile picture">
+                    <img src="profile2.jpg" alt="Buland Choudhary's profile picture">
+                </div>
+            </div>
+        </section>
+    
+        <section class="snap-section" id="education">
+            <div class="education-container">
+                <h2>Education</h2>
+                <h4>University of British Columbia: Computer engineering</h4>
+                <p>Currently pursuing a degree in Computer Engineering with a preferred
+                    specialization in Software Engineering. Maintaining an overall average of
+                    87%.</p>
+            </div>
+        </section>
+    
+        <section class="snap-section" id="projects">
+            <div class="projects-container">
+                <h2>Projects</h2>
+                <h4>TrackIt Website (<a href="https://github.com/Buland-Choudhary/TaskManagerWebsite" target="_blank">GitHub</a>)</h4>
+                <p>Developed a full-stack task management platform with user authentication, task
+                    categorization, and deadline tracking. Utilized React.js, Node.js, and MySQL, de-
+                    ploying the application on Netlify and Render.</p>
+                <h4>Demo App (ongoing)</h4>
+                <p>Developing a React Native demo app integrating ACS(Azure) SDK and (Microsoft)
+                    Copilot AI for secure video/audio calls and meeting summaries.</p>
+            </div>
+        </section>
     </main>
 </body>
 </html>
