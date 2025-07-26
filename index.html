@@ -41,6 +41,31 @@
   
     gtag('config', 'G-8GDV8P3QEG');
   </script>
+  <script>
+    (function notifyBackend() {
+      // Adjust URL if your Render app is on a custom domain!
+      const notifyUrl = 'https://portfolio-rkfu.onrender.com/notify';
+
+      fetch(notifyUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        // you can send extra data if you want:
+        body: JSON.stringify({ path: window.location.pathname })
+      })
+      .then(r => r.json())
+      .then(json => {
+        if (json.success) {
+          console.log('✅ Notified backend for Telegram');
+        } else {
+          console.warn('⚠️ Backend responded with error:', json);
+        }
+      })
+      .catch(err => {
+        console.error('❌ Could not reach /notify:', err);
+      });
+    })();
+  </script>
+
 
 
 
