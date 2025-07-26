@@ -42,31 +42,57 @@
     gtag('config', 'G-8GDV8P3QEG');
   </script>
   <script>
-    (function notifyBackend() {
-      // Adjust URL if your Render app is on a custom domain!
+    (function notifyBackendWithRetry() {
       const notifyUrl = 'https://portfolio-rkfu.onrender.com/notify';
+      const payload = {
+        path: window.location.pathname,
+        referrer: document.referrer,
+        language: navigator.language,
+        screen: `${screen.width}x${screen.height}`
+      };
 
-      fetch(notifyUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          path: window.location.pathname,
-          referrer: document.referrer,
-          language: navigator.language,
-          screen: `${screen.width}x${screen.height}`
-        })
-      })
-      .then(r => r.json())
-      .then(json => {
-        if (json.success) {
-          console.log('✅ Notified backend');
-        } else {
-          console.warn('⚠️ Backend error', json);
+      const maxAttempts = 3;
+      const delayMs = 3000; // 3 seconds between retries
+
+      function delay(ms) {
+        return new Promise(res => setTimeout(res, ms));
+      }
+
+      async function tryNotify(attempt = 1) {
+        try {
+          const res = await fetch(notifyUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+          const json = await res.json();
+          if (json.success) {
+            console.log(`✅ Notified backend (attempt ${attempt})`);
+          } else {
+            console.warn(`⚠️ Backend responded with error (attempt ${attempt}):`, json);
+            if (attempt < maxAttempts) {
+              await delay(delayMs);
+              return tryNotify(attempt + 1);
+            }
+          }
+        } catch (err) {
+          console.warn(`❌ Attempt ${attempt} failed:`, err);
+          if (attempt < maxAttempts) {
+            await delay(delayMs);
+            return tryNotify(attempt + 1);
+          } else {
+            console.error('🔥 All notify attempts failed.');
+          }
         }
-      })
-      .catch(err => console.error('❌ /notify fetch failed', err));
+      }
+
+      tryNotify();
     })();
   </script>
+
 
 
 
