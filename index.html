@@ -49,20 +49,22 @@
       fetch(notifyUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        // you can send extra data if you want:
-        body: JSON.stringify({ path: window.location.pathname })
+        body: JSON.stringify({
+          path: window.location.pathname,
+          referrer: document.referrer,
+          language: navigator.language,
+          screen: `${screen.width}x${screen.height}`
+        })
       })
       .then(r => r.json())
       .then(json => {
         if (json.success) {
-          console.log('✅ Notified backend for Telegram');
+          console.log('✅ Notified backend');
         } else {
-          console.warn('⚠️ Backend responded with error:', json);
+          console.warn('⚠️ Backend error', json);
         }
       })
-      .catch(err => {
-        console.error('❌ Could not reach /notify:', err);
-      });
+      .catch(err => console.error('❌ /notify fetch failed', err));
     })();
   </script>
 
