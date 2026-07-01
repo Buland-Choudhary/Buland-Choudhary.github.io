@@ -1,2 +1,5 @@
 .idea
 .DS_Store
+.claude/
+# internal reference screenshots (not part of the site)
+assets/img/screenshots/

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Project Details</title>
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+
+<body data-gr-c-s-loaded="true">
+
+  <!-- ======= Portfolio Details ======= -->
+  <main id="main">
+    <div id="portfolio-details" class="portfolio-details">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 portfolio-info" id="project-detail">
+            <!-- Filled in by the script below, based on the ?id= URL parameter -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main><!-- End #main -->
+
+  <!-- Content source (shared with the main page) -->
+  <script src="../assets/js/data.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      function esc(s) {
+        return String(s == null ? "" : s)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function getParam(name) {
+        var m = new RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
+        return m ? decodeURIComponent(m[1].replace(/\+/g, " ")) : null;
+      }
+
+      var data = window.PORTFOLIO_DATA || {};
+      var id = getParam("id");
+      var project = (data.projects || []).filter(function (p) { return p.id === id; })[0];
+      var target = document.getElementById("project-detail");
+
+      if (!project) {
+        target.innerHTML = '<br><h2 style="color:#12d640">Project not found</h2>' +
+          '<p>No project matches id "' + esc(id) + '".</p>';
+        document.title = "Project Details";
+        return;
+      }
+
+      document.title = project.title;
+
+      // Timeline (if present) + Tech Stack always shown; GitHub / Live Demo only if present
+      var links = "";
+      if (project.date) {
+        links += '<li><strong>Timeline</strong>: ' + esc(project.date) + '</li>';
+      }
+      links += '<li><strong>Tech Stack</strong>: ' + esc(project.stack) + '</li>';
+      if (project.github) {
+        links += '<li><strong>GitHub</strong>: <a href="' + esc(project.github) +
+                 '" target="_blank">Project Link</a></li>';
+      }
+      if (project.demo) {
+        links += '<li><strong>Live Demo</strong>: <a href="' + esc(project.demo) +
+                 '" target="_blank">View Demo</a></li>';
+      }
+
+      var paras = (project.description || []).map(function (p) {
+        return '<p>' + esc(p) + '</p>';
+      }).join("");
+
+      target.innerHTML =
+        '<br>' +
+        '<h2 style="color:#12d640">' + esc(project.title) + '</h2>' +
+        '<ul>' + links + '</ul>' +
+        paras;
+    })();
+  </script>
+
+</body>
+</html>
